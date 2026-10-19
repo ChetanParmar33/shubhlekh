@@ -75,7 +75,16 @@ const str = (v, max = 300) => String(v ?? '').replace(/[\u0000-\u0008\u000b\u000
 const safeText = (v, max) => str(v, max).replace(/[<>"'&`]/g, '');          // for fields templates drop into SVG/markup
 const PHOTO = /^(\/uploads\/[a-z0-9]{12,40}\.(jpg|png|webp)|assets\/img\/[a-z0-9-]{2,40}\.webp)$/;
 let photoTemplate = 0; // assets/ paths are relative to a template folder; they must exist in the chosen one
-const photo = (v) => { const s = String(v || ''); if (!PHOTO.test(s)) return ''; if (s.startsWith('assets/') && !fs.existsSync(path.join(config.paths.samples, String(photoTemplate), s))) return ''; return s; };
+// Design photos must exist in the chosen design. Checked on disk, or — where the function bundle has no sample images
+// (Netlify) — against the list written at build time by scripts/netlify-build.mjs.
+let assetList;
+const designHas = (tpl, rel) => {
+  const f = path.join(config.paths.samples, String(tpl), rel);
+  if (fs.existsSync(path.join(config.paths.samples, String(tpl), 'assets'))) return fs.existsSync(f);
+  assetList ??= new Set(JSON.parse(fs.readFileSync(path.join(config.paths.samples, 'assets.json'), 'utf8')));
+  return assetList.has(`${tpl}/${rel}`);
+};
+const photo = (v) => { const s = String(v || ''); if (!PHOTO.test(s)) return ''; if (s.startsWith('assets/') && !designHas(photoTemplate, s)) return ''; return s; };
 const color = (v) => (/^#[0-9a-f]{3,8}$/i.test(String(v || '')) ? String(v) : '#999999');
 const isoDate = (v) => { const s = str(v, 40); return /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(\+05:30|Z|[+-]\d{2}:\d{2})$/.test(s) && !isNaN(Date.parse(s)) ? s : null; };
 const ICONS = new Set(['mehndi', 'haldi', 'sangeet', 'wedding', 'reception', 'rings', 'gurdwara', 'moon', 'lamp']);

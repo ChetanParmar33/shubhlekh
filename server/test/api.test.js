@@ -13,7 +13,7 @@ const { createApp } = await import('../src/app.js');
 
 let server, base;
 before(async () => {
-  server = createApp(openDb(':memory:')).listen(0);
+  server = createApp(await openDb(':memory:')).listen(0);
   await new Promise((r) => server.once('listening', r));
   base = `http://127.0.0.1:${server.address().port}`;
 });

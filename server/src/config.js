@@ -1,9 +1,12 @@
 // Every setting comes from the environment (see .env.example) so nothing secret lives in code.
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const here = path.dirname(fileURLToPath(import.meta.url));
-export const ROOT = path.resolve(here, '..', '..');
+// Project root: next to this file locally; in a bundled Netlify function the included files sit under the task root.
+const here = import.meta.url ? path.dirname(fileURLToPath(import.meta.url)) : process.cwd();
+export const ROOT = [path.resolve(here, '..', '..'), process.cwd(), process.env.LAMBDA_TASK_ROOT].filter(Boolean)
+  .find((d) => fs.existsSync(path.join(d, 'samples'))) || path.resolve(here, '..', '..');
 
 const env = process.env;
 const isProd = env.NODE_ENV === 'production';
@@ -15,7 +18,7 @@ export const config = {
   isProd,
   port: Number(env.PORT || 8800),
   host: env.HOST || '0.0.0.0',
-  publicUrl: (env.PUBLIC_URL || `http://localhost:${env.PORT || 8800}`).replace(/\/$/, ''),
+  publicUrl: (env.PUBLIC_URL || env.URL || `http://localhost:${env.PORT || 8800}`).replace(/\/$/, ''), // Netlify sets URL
   brand: env.BRAND_NAME || 'Shubhlekh',
   supportEmail: env.SUPPORT_EMAIL || 'support@example.com',
   // Team WhatsApp number, digits with country code (e.g. 919876543210). Every "WhatsApp us" button on the site uses it.
@@ -24,6 +27,8 @@ export const config = {
   adminEmails: String(env.ADMIN_EMAILS || '').split(',').map((s) => s.trim().toLowerCase()).filter(Boolean),
   sessionSecret: env.SESSION_SECRET || 'dev-only-secret-change-me-dev-only-secret',
   dataDir: path.resolve(env.DATA_DIR || path.join(ROOT, 'server', 'data')),
+  // Postgres connection: Netlify DB sets NETLIFY_DATABASE_URL. Empty → local PGlite database in DATA_DIR.
+  databaseUrl: env.NETLIFY_DATABASE_URL || env.DATABASE_URL || '',
   razorpay: { keyId: env.RAZORPAY_KEY_ID || '', keySecret: env.RAZORPAY_KEY_SECRET || '' },
   // Lets you finish the publish flow locally without a payment gateway. Never enabled in production.
   devPayments: !isProd && env.DEV_PAYMENTS !== '0',

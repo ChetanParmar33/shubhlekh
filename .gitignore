@@ -15,3 +15,8 @@ marketing/*/vo/
 marketing/*/check/
 marketing/*/*.wav
 marketing/*/*.log
+
+# Netlify build output and local CLI state
+public/
+samples/assets.json
+.netlify/

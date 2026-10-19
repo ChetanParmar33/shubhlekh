@@ -52,10 +52,9 @@ function readCookie(req, name) {
 }
 
 export function sessionMiddleware(db) {
-  const byId = db.prepare('SELECT id, name, email, phone, pass_hash FROM users WHERE id = ?');
-  return (req, _res, next) => {
+  return async (req, _res, next) => {
     const p = unsign(readCookie(req, COOKIE));
-    const u = p && byId.get(p.uid);
+    const u = p && await db.get('SELECT id, name, email, phone, pass_hash FROM users WHERE id = ?', p.uid);
     req.user = u && passVersion(u.pass_hash) === p.pv ? { id: u.id, name: u.name, email: u.email, phone: u.phone, admin: config.adminEmails.includes(u.email.toLowerCase()) } : null;
     next();
   };
@@ -66,7 +65,7 @@ export function requireUser(req, res, next) {
   next();
 }
 
-// Tiny fixed-window limiter, good enough for one server process.
+// Tiny fixed-window limiter, per process. ponytail: on Netlify each function instance counts separately; move to a shared store if abuse shows up.
 export function rateLimit({ windowMs, max, key = (req) => req.ip }) {
   const hits = new Map();
   setInterval(() => hits.clear(), windowMs).unref();
