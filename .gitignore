@@ -1,0 +1,8 @@
+node_modules/
+web/dist/
+server/data/
+server/.env
+
+# photo-picking working files (re-created by tools/photos/search.py + sheet.py)
+tools/photos/th/
+tools/photos/*.png

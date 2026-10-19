@@ -1,0 +1,87 @@
+/* Interface text shared by every sample. Section titles can be overridden per sample in config.js (INVITE.titles). */
+window.I18N = {
+  en: {
+    short: 'EN', tap: 'Tap to open', invited: 'You are invited', dear: 'Dear Family & Friends', skip: 'Skip', scroll: 'Scroll',
+    scratchHint: 'Scratch to reveal', revealBtn: 'Reveal the date', saveDate: 'Save the date', google: 'Google Calendar', apple: 'Apple / Outlook',
+    days: 'Days', hours: 'Hours', mins: 'Minutes', secs: 'Seconds', today: 'Today is the day!', after: 'We are married — thank you for your blessings!',
+    directions: 'Directions', calendar: 'Calendar', showMap: 'Show map', openMaps: 'Open in Google Maps',
+    by: 'Please reply by', name: 'Your name', yes: 'Joyfully accept', no: 'Regretfully decline', guests: 'Guests', which: 'Which celebrations?', msg: 'A message for the couple', optional: 'optional',
+    send: 'Send RSVP', sending: 'Sending…', req: 'Please fill this in', pickOne: 'Please choose one',
+    notConnected: 'RSVP isn’t connected yet, so nothing was saved. Please reply on WhatsApp instead.', failed: 'Couldn’t send — please check your connection and try again.',
+    thanksYes: 'Thank you! We can’t wait to celebrate with you.', thanksNo: 'Thank you for letting us know — you’ll be missed.', again: 'Change my answer',
+    share: 'Share', whatsapp: 'WhatsApp', copy: 'Copy link', copied: 'Link copied!', help: 'Questions? Call', musicOn: 'Play music', musicOff: 'Pause music', rsvpPill: 'RSVP',
+    t: { invite: ['An invitation', 'With love'], date: ['The date', 'Scratch to reveal'], count: ['Until we say yes', 'Counting down'], story: ['How it began', 'Our Story'], gallery: ['Moments', 'Glimpses'],
+      events: ['Celebrations', 'The Festivities'], venue: ['Where', 'The Venue'], dress: ['What to wear', 'Dress Code'], travel: ['Good to know', 'Travel & Stay'], family: ['With the blessings of', 'Our Families'],
+      rsvp: ['Kindly respond', 'Will you join us?'], wishes: ['Love notes', 'Wishes'], end: ['', 'We can’t wait to celebrate with you'] }
+  },
+  hi: {
+    short: 'हिं', tap: 'खोलने के लिए छुएँ', invited: 'आप सादर आमंत्रित हैं', dear: 'आदरणीय परिवारजन एवं मित्रगण', skip: 'छोड़ें', scroll: 'नीचे देखें',
+    scratchHint: 'तिथि देखने के लिए खुरचें', revealBtn: 'तिथि दिखाएँ', saveDate: 'तिथि सहेजें', google: 'गूगल कैलेंडर', apple: 'ऐपल / आउटलुक',
+    days: 'दिन', hours: 'घंटे', mins: 'मिनट', secs: 'सेकंड', today: 'आज वह शुभ दिन है!', after: 'हम परिणय सूत्र में बंध गए — आपके आशीर्वाद के लिए धन्यवाद!',
+    directions: 'रास्ता', calendar: 'कैलेंडर', showMap: 'नक़्शा दिखाएँ', openMaps: 'गूगल मैप्स में खोलें',
+    by: 'कृपया उत्तर दें, इस तिथि तक', name: 'आपका नाम', yes: 'सहर्ष स्वीकार', no: 'खेद सहित असमर्थ', guests: 'मेहमान', which: 'किन उत्सवों में?', msg: 'वर-वधू के लिए संदेश', optional: 'वैकल्पिक',
+    send: 'उत्तर भेजें', sending: 'भेजा जा रहा है…', req: 'कृपया यह भरें', pickOne: 'कृपया एक चुनें',
+    notConnected: 'RSVP अभी जुड़ा नहीं है, इसलिए कुछ सेव नहीं हुआ। कृपया व्हाट्सऐप पर उत्तर दें।', failed: 'भेजा नहीं जा सका — इंटरनेट जाँचकर फिर कोशिश करें।',
+    thanksYes: 'धन्यवाद! आपके साथ उत्सव मनाने की प्रतीक्षा है।', thanksNo: 'बताने के लिए धन्यवाद — आपकी कमी खलेगी।', again: 'उत्तर बदलें',
+    share: 'भेजें', whatsapp: 'व्हाट्सऐप', copy: 'लिंक कॉपी करें', copied: 'लिंक कॉपी हो गया!', help: 'कोई सवाल? कॉल करें', musicOn: 'संगीत चलाएँ', musicOff: 'संगीत रोकें', rsvpPill: 'उत्तर दें',
+    t: { invite: ['निमंत्रण', 'सप्रेम'], date: ['शुभ तिथि', 'खुरचकर देखें'], count: ['हमारे "हाँ" तक', 'उलटी गिनती'], story: ['कैसे शुरू हुआ', 'हमारी कहानी'], gallery: ['यादें', 'झलकियाँ'],
+      events: ['उत्सव', 'कार्यक्रम'], venue: ['कहाँ', 'विवाह स्थल'], dress: ['क्या पहनें', 'पोशाक'], travel: ['ज़रूरी जानकारी', 'यात्रा एवं ठहराव'], family: ['आशीर्वाद सहित', 'हमारे परिवार'],
+      rsvp: ['कृपया उत्तर दें', 'क्या आप पधारेंगे?'], wishes: ['प्यार भरे संदेश', 'शुभकामनाएँ'], end: ['', 'आपके साथ उत्सव मनाने की प्रतीक्षा है'] }
+  },
+  pa: {
+    short: 'ਪੰ', tap: 'ਖੋਲ੍ਹਣ ਲਈ ਛੂਹੋ', invited: 'ਆਪ ਜੀ ਨੂੰ ਸਾਦਰ ਸੱਦਾ', dear: 'ਸਤਿਕਾਰਯੋਗ ਪਰਿਵਾਰ ਅਤੇ ਦੋਸਤੋ', skip: 'ਛੱਡੋ', scroll: 'ਹੇਠਾਂ ਦੇਖੋ',
+    scratchHint: 'ਤਾਰੀਖ਼ ਦੇਖਣ ਲਈ ਖੁਰਚੋ', revealBtn: 'ਤਾਰੀਖ਼ ਦਿਖਾਓ', saveDate: 'ਤਾਰੀਖ਼ ਸੰਭਾਲੋ', google: 'ਗੂਗਲ ਕੈਲੰਡਰ', apple: 'ਐਪਲ / ਆਉਟਲੁੱਕ',
+    days: 'ਦਿਨ', hours: 'ਘੰਟੇ', mins: 'ਮਿੰਟ', secs: 'ਸਕਿੰਟ', today: 'ਅੱਜ ਉਹ ਸ਼ੁਭ ਦਿਨ ਹੈ!', after: 'ਸਾਡਾ ਵਿਆਹ ਹੋ ਗਿਆ — ਆਪ ਜੀ ਦੀਆਂ ਅਸੀਸਾਂ ਲਈ ਧੰਨਵਾਦ!',
+    directions: 'ਰਸਤਾ', calendar: 'ਕੈਲੰਡਰ', showMap: 'ਨਕਸ਼ਾ ਦਿਖਾਓ', openMaps: 'ਗੂਗਲ ਮੈਪਸ ਵਿੱਚ ਖੋਲ੍ਹੋ',
+    by: 'ਕਿਰਪਾ ਕਰਕੇ ਜਵਾਬ ਦਿਓ, ਇਸ ਤਾਰੀਖ਼ ਤੱਕ', name: 'ਤੁਹਾਡਾ ਨਾਮ', yes: 'ਖ਼ੁਸ਼ੀ ਨਾਲ ਆਵਾਂਗੇ', no: 'ਅਫ਼ਸੋਸ, ਨਹੀਂ ਆ ਸਕਾਂਗੇ', guests: 'ਮਹਿਮਾਨ', which: 'ਕਿਹੜੇ ਸਮਾਗਮਾਂ ਵਿੱਚ?', msg: 'ਜੋੜੀ ਲਈ ਸੁਨੇਹਾ', optional: 'ਵਿਕਲਪਿਕ',
+    send: 'ਜਵਾਬ ਭੇਜੋ', sending: 'ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…', req: 'ਕਿਰਪਾ ਕਰਕੇ ਇਹ ਭਰੋ', pickOne: 'ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਚੁਣੋ',
+    notConnected: 'RSVP ਅਜੇ ਜੁੜਿਆ ਨਹੀਂ, ਇਸ ਲਈ ਕੁਝ ਸੇਵ ਨਹੀਂ ਹੋਇਆ। ਕਿਰਪਾ ਕਰਕੇ ਵਟਸਐਪ ’ਤੇ ਜਵਾਬ ਦਿਓ।', failed: 'ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ — ਇੰਟਰਨੈੱਟ ਦੇਖ ਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+    thanksYes: 'ਧੰਨਵਾਦ! ਤੁਹਾਡੇ ਨਾਲ ਜਸ਼ਨ ਮਨਾਉਣ ਦੀ ਉਡੀਕ ਹੈ।', thanksNo: 'ਦੱਸਣ ਲਈ ਧੰਨਵਾਦ — ਤੁਹਾਡੀ ਕਮੀ ਮਹਿਸੂਸ ਹੋਵੇਗੀ।', again: 'ਜਵਾਬ ਬਦਲੋ',
+    share: 'ਭੇਜੋ', whatsapp: 'ਵਟਸਐਪ', copy: 'ਲਿੰਕ ਕਾਪੀ ਕਰੋ', copied: 'ਲਿੰਕ ਕਾਪੀ ਹੋ ਗਿਆ!', help: 'ਕੋਈ ਸਵਾਲ? ਫ਼ੋਨ ਕਰੋ', musicOn: 'ਸੰਗੀਤ ਚਲਾਓ', musicOff: 'ਸੰਗੀਤ ਰੋਕੋ', rsvpPill: 'ਜਵਾਬ ਦਿਓ',
+    t: { invite: ['ਸੱਦਾ', 'ਪਿਆਰ ਸਹਿਤ'], date: ['ਸ਼ੁਭ ਤਾਰੀਖ਼', 'ਖੁਰਚ ਕੇ ਦੇਖੋ'], count: ['ਸਾਡੀ "ਹਾਂ" ਤੱਕ', 'ਉਲਟੀ ਗਿਣਤੀ'], story: ['ਕਿਵੇਂ ਸ਼ੁਰੂ ਹੋਇਆ', 'ਸਾਡੀ ਕਹਾਣੀ'], gallery: ['ਯਾਦਾਂ', 'ਝਲਕੀਆਂ'],
+      events: ['ਸਮਾਗਮ', 'ਪ੍ਰੋਗਰਾਮ'], venue: ['ਕਿੱਥੇ', 'ਵਿਆਹ ਸਥਾਨ'], dress: ['ਕੀ ਪਹਿਨੀਏ', 'ਪਹਿਰਾਵਾ'], travel: ['ਜ਼ਰੂਰੀ ਜਾਣਕਾਰੀ', 'ਸਫ਼ਰ ਅਤੇ ਠਹਿਰ'], family: ['ਅਸੀਸਾਂ ਸਹਿਤ', 'ਸਾਡੇ ਪਰਿਵਾਰ'],
+      rsvp: ['ਕਿਰਪਾ ਕਰਕੇ ਜਵਾਬ ਦਿਓ', 'ਕੀ ਤੁਸੀਂ ਆਓਗੇ?'], wishes: ['ਪਿਆਰ ਭਰੇ ਸੁਨੇਹੇ', 'ਸ਼ੁਭਕਾਮਨਾਵਾਂ'], end: ['', 'ਤੁਹਾਡੇ ਨਾਲ ਜਸ਼ਨ ਮਨਾਉਣ ਦੀ ਉਡੀਕ ਹੈ'] }
+  },
+  ur: {
+    short: 'اردو', tap: 'کھولنے کے لیے چھوئیں', invited: 'آپ کو دل سے مدعو کیا جاتا ہے', dear: 'محترم اہلِ خانہ و احباب', skip: 'آگے', scroll: 'نیچے دیکھیں',
+    scratchHint: 'تاریخ دیکھنے کے لیے کھرچیں', revealBtn: 'تاریخ دکھائیں', saveDate: 'تاریخ محفوظ کریں', google: 'گوگل کیلنڈر', apple: 'ایپل / آؤٹ لک',
+    days: 'دن', hours: 'گھنٹے', mins: 'منٹ', secs: 'سیکنڈ', today: 'آج وہ مبارک دن ہے!', after: 'ہمارا نکاح ہو گیا — آپ کی دعاؤں کا شکریہ!',
+    directions: 'راستہ', calendar: 'کیلنڈر', showMap: 'نقشہ دکھائیں', openMaps: 'گوگل میپس میں کھولیں',
+    by: 'براہِ کرم اس تاریخ تک جواب دیں', name: 'آپ کا نام', yes: 'خوشی سے شرکت', no: 'معذرت، شرکت ممکن نہیں', guests: 'مہمان', which: 'کن تقریبات میں؟', msg: 'دولہا دلہن کے لیے پیغام', optional: 'اختیاری',
+    send: 'جواب بھیجیں', sending: 'بھیجا جا رہا ہے…', req: 'براہِ کرم یہ پُر کریں', pickOne: 'براہِ کرم ایک منتخب کریں',
+    notConnected: 'RSVP ابھی منسلک نہیں، اس لیے کچھ محفوظ نہیں ہوا۔ براہِ کرم واٹس ایپ پر جواب دیں۔', failed: 'بھیجا نہیں جا سکا — انٹرنیٹ دیکھ کر دوبارہ کوشش کریں۔',
+    thanksYes: 'شکریہ! آپ کے ساتھ جشن منانے کا انتظار ہے۔', thanksNo: 'بتانے کا شکریہ — آپ کی کمی محسوس ہوگی۔', again: 'جواب بدلیں',
+    share: 'بھیجیں', whatsapp: 'واٹس ایپ', copy: 'لنک کاپی کریں', copied: 'لنک کاپی ہو گیا!', help: 'کوئی سوال؟ فون کریں', musicOn: 'موسیقی چلائیں', musicOff: 'موسیقی روکیں', rsvpPill: 'جواب دیں',
+    t: { invite: ['دعوت نامہ', 'محبت کے ساتھ'], date: ['مبارک تاریخ', 'کھرچ کر دیکھیں'], count: ['اس مبارک دن تک', 'الٹی گنتی'], story: ['کیسے شروع ہوا', 'ہماری کہانی'], gallery: ['یادیں', 'جھلکیاں'],
+      events: ['تقریبات', 'پروگرام'], venue: ['کہاں', 'مقام'], dress: ['کیا پہنیں', 'لباس'], travel: ['ضروری معلومات', 'سفر و قیام'], family: ['دعاؤں کے ساتھ', 'ہمارے خاندان'],
+      rsvp: ['براہِ کرم جواب دیں', 'کیا آپ تشریف لائیں گے؟'], wishes: ['محبت بھرے پیغام', 'نیک تمنائیں'], end: ['', 'آپ کے ساتھ جشن منانے کا انتظار ہے'] }
+  },
+  gu: {
+    short: 'ગુ', tap: 'ખોલવા માટે સ્પર્શ કરો', invited: 'આપને સહપરિવાર ભાવભીનું આમંત્રણ', dear: 'આદરણીય સ્નેહીજનો અને મિત્રો', skip: 'આગળ', scroll: 'નીચે જુઓ',
+    scratchHint: 'તારીખ જોવા ઘસો', revealBtn: 'તારીખ બતાવો', saveDate: 'તારીખ સાચવો', google: 'ગૂગલ કૅલેન્ડર', apple: 'ઍપલ / આઉટલુક',
+    days: 'દિવસ', hours: 'કલાક', mins: 'મિનિટ', secs: 'સેકન્ડ', today: 'આજે એ શુભ દિવસ છે!', after: 'અમે લગ્નબંધનમાં બંધાઈ ગયાં — આપના આશીર્વાદ બદલ આભાર!',
+    directions: 'રસ્તો', calendar: 'કૅલેન્ડર', showMap: 'નકશો બતાવો', openMaps: 'ગૂગલ મૅપ્સમાં ખોલો',
+    by: 'કૃપા કરી આ તારીખ સુધીમાં જવાબ આપશો', name: 'આપનું નામ', yes: 'હર્ષભેર પધારીશું', no: 'ખેદ સાથે અસમર્થ', guests: 'મહેમાનો', which: 'કયા પ્રસંગોમાં?', msg: 'વર-કન્યા માટે સંદેશ', optional: 'વૈકલ્પિક',
+    send: 'જવાબ મોકલો', sending: 'મોકલાઈ રહ્યું છે…', req: 'કૃપા કરી આ ભરો', pickOne: 'કૃપા કરી એક પસંદ કરો',
+    notConnected: 'જવાબ હજી સાચવી શકાતો નથી. કૃપા કરી વૉટ્સઍપ પર જણાવશો.', failed: 'મોકલી શકાયું નહીં — ઇન્ટરનેટ તપાસીને ફરી પ્રયાસ કરો.',
+    thanksYes: 'આભાર! આપની સાથે ઉત્સવ ઊજવવાની રાહ છે.', thanksNo: 'જણાવવા બદલ આભાર — આપની ખોટ સાલશે.', again: 'જવાબ બદલો',
+    share: 'મોકલો', whatsapp: 'વૉટ્સઍપ', copy: 'લિંક કૉપિ કરો', copied: 'લિંક કૉપિ થઈ ગઈ!', help: 'કોઈ પ્રશ્ન? ફોન કરો', musicOn: 'સંગીત ચાલુ કરો', musicOff: 'સંગીત બંધ કરો', rsvpPill: 'જવાબ આપો',
+    t: { invite: ['કંકોત્રી', 'સ્નેહભર્યું આમંત્રણ'], date: ['શુભ તિથિ', 'ઘસીને જુઓ'], count: ['શુભ ઘડીને', 'બાકી સમય'], story: ['અમારી વાત', 'પ્રેમની સફર'], gallery: ['યાદો', 'ઝલક'],
+      events: ['પ્રસંગો', 'શુભ પ્રસંગો'], venue: ['ક્યાં', 'લગ્ન સ્થળ'], dress: ['શું પહેરવું', 'પહેરવેશ'], travel: ['ઉપયોગી માહિતી', 'મુસાફરી અને ઉતારો'], family: ['આશીર્વાદ સહિત', 'અમારા પરિવાર'],
+      rsvp: ['કૃપા કરી જણાવશો', 'શું આપ પધારશો?'], wishes: ['શુભેચ્છાઓ', 'આશીર્વચન'], end: ['', 'આપ સહપરિવાર પધારશો'] }
+  },
+  ta: {
+    short: 'த', tap: 'திறக்க தொடவும்', invited: 'அன்புடன் அழைக்கிறோம்', dear: 'அன்பான குடும்பத்தினருக்கும் நண்பர்களுக்கும்', skip: 'தவிர்', scroll: 'கீழே பார்க்கவும்',
+    scratchHint: 'தேதியைக் காண சுரண்டவும்', revealBtn: 'தேதியைக் காட்டு', saveDate: 'தேதியைச் சேமி', google: 'கூகுள் காலண்டர்', apple: 'ஆப்பிள் / அவுட்லுக்',
+    days: 'நாட்கள்', hours: 'மணி', mins: 'நிமிடம்', secs: 'விநாடி', today: 'இன்றுதான் அந்த சுப நாள்!', after: 'எங்கள் திருமணம் இனிதே நடந்தது — உங்கள் ஆசீர்வாதங்களுக்கு நன்றி!',
+    directions: 'வழி', calendar: 'காலண்டர்', showMap: 'வரைபடம் காட்டு', openMaps: 'கூகுள் மேப்ஸில் திற',
+    by: 'இந்தத் தேதிக்குள் பதில் அளிக்கவும்', name: 'உங்கள் பெயர்', yes: 'மகிழ்ச்சியுடன் வருகிறோம்', no: 'வருந்துகிறோம், வர இயலாது', guests: 'விருந்தினர்', which: 'எந்த நிகழ்ச்சிகளுக்கு?', msg: 'மணமக்களுக்கு ஒரு வாழ்த்து', optional: 'விருப்பத்தேர்வு',
+    send: 'பதில் அனுப்பு', sending: 'அனுப்பப்படுகிறது…', req: 'இதை நிரப்பவும்', pickOne: 'ஒன்றைத் தேர்ந்தெடுக்கவும்',
+    notConnected: 'RSVP இன்னும் இணைக்கப்படவில்லை, எதுவும் சேமிக்கப்படவில்லை. வாட்ஸ்அப்பில் பதில் அளிக்கவும்.', failed: 'அனுப்ப முடியவில்லை — இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.',
+    thanksYes: 'நன்றி! உங்களுடன் கொண்டாட காத்திருக்கிறோம்.', thanksNo: 'தெரிவித்ததற்கு நன்றி — உங்களை மிஸ் செய்வோம்.', again: 'பதிலை மாற்று',
+    share: 'பகிர்', whatsapp: 'வாட்ஸ்அப்', copy: 'இணைப்பை நகலெடு', copied: 'இணைப்பு நகலெடுக்கப்பட்டது!', help: 'கேள்விகளா? அழைக்கவும்', musicOn: 'இசை இயக்கு', musicOff: 'இசை நிறுத்து', rsvpPill: 'பதில்',
+    t: { invite: ['அழைப்பிதழ்', 'அன்புடன்'], date: ['சுப தினம்', 'சுரண்டிப் பாருங்கள்'], count: ['அந்த நாள் வரை', 'கவுண்ட்டவுன்'], story: ['எப்படி தொடங்கியது', 'எங்கள் கதை'], gallery: ['நினைவுகள்', 'காட்சிகள்'],
+      events: ['விழாக்கள்', 'நிகழ்ச்சிகள்'], venue: ['எங்கே', 'திருமண மண்டபம்'], dress: ['என்ன அணியலாம்', 'உடை'], travel: ['தெரிந்துகொள்ள', 'பயணம் & தங்குமிடம்'], family: ['ஆசீர்வாதத்துடன்', 'எங்கள் குடும்பங்கள்'],
+      rsvp: ['பதில் அளிக்கவும்', 'நீங்கள் வருவீர்களா?'], wishes: ['அன்பு வாழ்த்துகள்', 'வாழ்த்துகள்'], end: ['', 'உங்களுடன் கொண்டாட காத்திருக்கிறோம்'] }
+  }
+};

@@ -1,0 +1,78 @@
+/* Kankotri · sindoor red, haldi yellow, cream · Rozha One / Hind Vadodara / Shrikhand */
+:root {
+  --bg: #fff4dc; --ink: #3a0a0e; --muted: #7a4a3a; --accent: #c98a00; --accent2: #b3121f; --line: rgba(179,18,31,.25);
+  --card: #fffaf0; --card-border: 2px solid #b3121f; --card-radius: 6px; --card-shadow: inset 0 0 0 5px #fffaf0, inset 0 0 0 7px #f6c21a, 0 14px 30px -20px rgba(120,0,10,.5);
+  --btn: #b3121f; --btn-ink: #fff4dc; --btn-radius: 6px; --btn-shadow: 0 0 0 2px #fff4dc, 0 0 0 4px #f6c21a;
+  --title-color: #b3121f; --title-size: clamp(2.2rem, 10vw, 2.7rem); --name-color: #fff4dc; --name-size: clamp(3rem, 15vw, 3.8rem);
+  --chrome-bg: #b3121f; --chrome-ink: #f6c21a; --chrome-border: 2px solid #f6c21a; --on: #b3121f; --on-ink: #fff4dc;
+  --f-names: 'Rozha One', serif; --f-title: 'Rozha One', serif; --f-caps: 'Hind Vadodara', sans-serif; --f-body: 'Hind Vadodara', sans-serif;
+  --f-gu-names: 'Shrikhand', serif; --f-gu-title: 'Shrikhand', serif; --f-gu-body: 'Hind Vadodara', sans-serif;
+}
+body { background: #fff4dc radial-gradient(circle, rgba(246,194,26,.28) 1.5px, transparent 2px) 0 0 / 22px 22px; }
+@media (min-width: 700px) { body::before { content: ''; position: fixed; inset: 0; background: #b3121f radial-gradient(circle, rgba(246,194,26,.4) 2px, transparent 2.5px) 0 0 / 26px 26px; } }
+.sec { padding-top: 70px; }
+.sec::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 12px; background: radial-gradient(circle at 50% 0, #b3121f 6px, transparent 6.5px) 0 0 / 18px 12px repeat-x; opacity: .7; }
+.kicker { font-weight: 600; letter-spacing: .26em; }
+.divider svg { width: 80px; }
+.rv { transform: scale(.94); }
+
+/* gate: the envelope */
+.gate { background: #8e0a12 radial-gradient(circle, rgba(246,194,26,.25) 2px, transparent 2.5px) 0 0 / 24px 24px; overflow: hidden; }
+.k-env { position: relative; width: min(330px, 84vw); aspect-ratio: 1.25; margin-top: 10vh; perspective: 1200px; }
+.k-back, .k-front, .k-flap { position: absolute; left: 0; right: 0; }
+.k-back { inset: 0; background: #b3121f; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+.k-front { bottom: 0; height: 100%; z-index: 3; border-radius: 8px; background: linear-gradient(160deg, #c41a26, #a50f1b); clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%); }
+.k-front::after { content: ''; position: absolute; inset: auto 10px 10px; height: 2px; background: #f6c21a; opacity: .7; }
+.k-flap { top: 0; height: 62%; z-index: 4; transform-origin: top; background: linear-gradient(to bottom, #d42430, #a50f1b); clip-path: polygon(0 0, 100% 0, 50% 100%); transition: transform 1s cubic-bezier(.6,0,.3,1), z-index 0s .5s; }
+.k-seal { position: absolute; z-index: 6; left: 50%; top: 52%; width: 84px; height: 84px; margin: -42px; border-radius: 50%; border: 0; background: radial-gradient(circle at 40% 35%, #ffe58a, #d9a43a 60%, #8a5a12); color: #8e0a12; font: 400 1.1rem 'Rozha One', serif; box-shadow: 0 0 0 4px #b3121f, 0 0 0 6px #f6c21a, 0 10px 24px rgba(0,0,0,.4); animation: k-pulse 2s ease-in-out infinite; transition: transform .5s, opacity .5s; }
+@keyframes k-pulse { 50% { transform: scale(1.07); } }
+.k-card { position: absolute; z-index: 2; left: 6%; right: 6%; top: 6%; bottom: 4%; padding: 18px 14px; background: #fff4dc; border-radius: 4px; text-align: center; color: #b3121f; box-shadow: inset 0 0 0 4px #fff4dc, inset 0 0 0 6px #f6c21a; transition: transform 1.3s cubic-bezier(.3,.7,.2,1) .7s; overflow: hidden; }
+.k-ganesh { display: block; width: 54px; margin: 0 auto; color: #b3121f; }
+.k-title { font: 400 1.6rem 'Shrikhand', 'Rozha One', serif; color: #c98a00; }
+.k-card .g-names { font-size: 1.7rem; color: #b3121f; margin-top: 0; }
+.k-card .g-inv { font-size: .95rem; color: #b3121f; }
+.k-card .g-greet { font-size: .82rem; color: #7a4a3a; }
+.k-tap { color: #f6c21a; position: relative; z-index: 5; }
+.k-tilak { position: fixed; z-index: 10; left: 50%; top: 9%; width: 16px; height: 26px; margin: -13px -8px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 50% 40%, #ff4a4a, #9e0a12); opacity: 0; transform: scale(4); }
+.k-open .k-seal { transform: scale(0); opacity: 0; animation: none; }
+.k-open .k-flap { transform: rotateX(180deg); z-index: 1; }
+.k-open .k-card { transform: translateY(-62%); z-index: 5; }
+.k-open .k-tap { opacity: 0; }
+.k-open .k-tilak { animation: k-stamp .6s cubic-bezier(.3,1.6,.5,1) 1.9s forwards; }
+@keyframes k-stamp { to { opacity: 1; transform: scale(1); } }
+
+/* hero */
+.hero { padding-top: 84px; color: #fff4dc; }
+.k-hero-bg { position: absolute; inset: 0; background: #b3121f radial-gradient(circle, rgba(246,194,26,.35) 2px, transparent 2.5px) 0 0 / 24px 24px; }
+.k-hero-bg::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background: linear-gradient(transparent, #8e0a12); }
+.k-frame { position: relative; z-index: 2; order: 2; width: min(270px, 70vw); aspect-ratio: 1; margin: 22px auto 0; border-radius: 50%; padding: 8px; background: conic-gradient(from 0deg, #f6c21a 0 10deg, #fff4dc 10deg 20deg) ; box-shadow: 0 0 0 6px #b3121f, 0 0 0 9px #f6c21a, 0 24px 50px rgba(0,0,0,.4); }
+.k-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; animation: k-spin-slow 0s; }
+.hero-copy { order: 1; }
+.hero .invocation { font: 500 1.2rem var(--f-gu); color: #f6c21a; }
+.hero .kicker { color: #ffe08a; }
+.nm { text-shadow: 0 3px 0 #8e0a12; }
+.amp { color: #f6c21a; font-size: 2.2rem; }
+.hero-date { padding: 8px 18px; border: 2px solid #f6c21a; color: #f6c21a; font-weight: 600; letter-spacing: .1em; }
+.scroll-cue { color: #f6c21a; }
+.hs { transform: translateY(20px) scale(.95); }
+
+/* pieces */
+.invite-card { text-align: center; }
+.invite-photo { border-radius: 4px; border: 3px solid #f6c21a; }
+.pn { color: #b3121f; }
+.scratch::before { content: ''; position: absolute; inset: -18px; border-radius: 50%; background: conic-gradient(#b3121f 0 15deg, #f6c21a 15deg 30deg); -webkit-mask: radial-gradient(circle, transparent 62%, #000 63%); mask: radial-gradient(circle, transparent 62%, #000 63%); animation: spin 40s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.scratch-reveal { border-radius: 50%; background: #fffaf0; border: 3px solid #b3121f; }
+.sr-date { font-size: 4.6rem; }
+.cd { background: #b3121f; border-radius: 6px; box-shadow: inset 0 0 0 3px #b3121f, inset 0 0 0 5px #f6c21a; }
+.cd-n { color: #fff4dc; } .cd-l { color: #ffe08a; }
+.toran-mini { display: flex; justify-content: center; gap: 4px; margin-top: 26px; }
+.toran-mini i { width: 16px; height: 26px; background: #2f7d32; border-radius: 0 0 50% 50%; transform-origin: top; animation: k-sway 3s ease-in-out calc(var(--i) * -.2s) infinite; }
+.toran-mini i:nth-child(odd) { background: #f28c28; border-radius: 50%; height: 16px; }
+@keyframes k-sway { 50% { transform: rotate(6deg); } }
+.story-photo { padding: 6px; background: #fffaf0; border: 2px solid #b3121f; border-radius: 6px; }
+.slides { border: 6px solid #b3121f; box-shadow: 0 0 0 3px #f6c21a; }
+.ev-dot { border-radius: 6px; transform: rotate(45deg); } .ev-dot .ic { transform: rotate(-45deg); }
+.wish { border-top: 6px solid #f6c21a; }
+.end-names { text-shadow: none; color: #b3121f; }
+.foot { background: #8e0a12; color: #f6c21a; }

@@ -1,0 +1,65 @@
+/* Vav · sandstone, deep umber, diya amber · Cinzel / Marcellus SC / Spectral / Noto Serif Gujarati */
+:root {
+  --bg: #efe0c8; --ink: #2a1d13; --muted: #6b5643; --accent: #a0662c; --accent2: #3b2a1e; --line: rgba(59,42,30,.22);
+  --card: #f7ecda; --card-border: 1px solid rgba(160,120,72,.4); --card-radius: 2px; --card-shadow: 0 2px 0 #c9a27a, 0 24px 40px -30px rgba(42,29,19,.7);
+  --btn: #3b2a1e; --btn-ink: #ffd98a; --btn-radius: 0; --title-color: #3b2a1e; --title-size: clamp(1.8rem, 8vw, 2.3rem); --title-weight: 600;
+  --name-color: #fff3d6; --name-size: clamp(2.2rem, 11vw, 3rem); --name-weight: 500; --on: #a0662c; --on-ink: #fff3d6;
+  --chrome-bg: rgba(42,29,19,.7); --chrome-ink: #ffd98a; --chrome-border: 1px solid rgba(255,217,138,.4);
+  --f-names: 'Cinzel', serif; --f-title: 'Cinzel', serif; --f-caps: 'Marcellus SC', serif; --f-body: 'Spectral', serif; --f-gu: 'Noto Serif Gujarati', serif;
+}
+body { background: #efe0c8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Cpath d='M0 39.5h80M40 0v20M0 19.5h80' stroke='%233b2a1e' stroke-opacity='.06'/%3E%3C/svg%3E"); }
+@media (min-width: 700px) { body::before { content: ''; position: fixed; inset: 0; background: url(assets/img/vav-corridor.webp) center/cover; filter: blur(14px) brightness(.55); } }
+.sec { padding-top: 72px; }
+.kicker { color: #a0662c; letter-spacing: .3em; }
+.title { letter-spacing: .06em; }
+.lang-gu .title { letter-spacing: 0; }
+.rv { -webkit-mask: linear-gradient(#000, #000) 0 0 / 100% 0% no-repeat; mask: linear-gradient(#000, #000) 0 0 / 100% 0% no-repeat; opacity: 1; transform: none; transition: -webkit-mask-size 1.2s cubic-bezier(.6,0,.2,1) var(--d,0s), mask-size 1.2s cubic-bezier(.6,0,.2,1) var(--d,0s); }
+.rv.in { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+
+/* gate */
+.gate { background: #120c07; overflow: hidden; perspective: 600px; }
+.v-well { position: absolute; inset: 0; display: grid; place-items: center; transform-style: preserve-3d; }
+.v-lvl { position: absolute; width: calc(100% - var(--i) * 15%); height: calc(100% - var(--i) * 14%); border: 10px solid; border-color: hsl(30, 35%, calc(58% - var(--i) * 8%)) hsl(30, 35%, calc(48% - var(--i) * 7%)) hsl(30, 35%, calc(40% - var(--i) * 6%)) hsl(30, 35%, calc(48% - var(--i) * 7%)); border-radius: 50% 50% 0 0 / calc(16% + var(--i) * 2%) calc(16% + var(--i) * 2%) 0 0; transition: transform 2.4s cubic-bezier(.6,0,.2,1), opacity 2.4s; }
+.v-diya { position: absolute; bottom: 12%; width: 10px; height: 14px; border-radius: 50% 50% 40% 40%; background: radial-gradient(circle at 50% 70%, #fff3b0, #ffb347 50%, transparent 70%); opacity: 0; animation: v-light .5s ease calc(.3s + var(--i) * .25s) forwards, v-flick 1.2s ease-in-out calc(1s + var(--i) * .2s) infinite alternate; filter: drop-shadow(0 0 8px #ffb347); }
+.v-diya:first-child { left: -14px; } .v-diya:last-child { right: -14px; }
+@keyframes v-light { to { opacity: 1; } }
+@keyframes v-flick { to { transform: scale(.85, 1.1); } }
+.v-box { position: relative; z-index: 3; color: #fff3d6; padding: 0 30px; margin-top: 18vh; opacity: 0; animation: v-in 1.2s ease 1.6s forwards; }
+@keyframes v-in { to { opacity: 1; } }
+.v-box .g-inv { color: #ffd98a; } .v-box .g-names { color: #fff3d6; text-shadow: 0 0 24px rgba(255,179,71,.6); }
+.v-btn { margin-top: 16px; background: transparent; color: #ffd98a; border: 1px solid #ffd98a; letter-spacing: .18em; }
+.v-open .v-lvl { transform: translateZ(calc(560px - var(--i) * 30px)); opacity: 0; transition-delay: calc((5 - var(--i)) * .08s); }
+.v-open .v-box { animation: none; opacity: 0; transform: translateY(40px); transition: all .8s; }
+
+/* hero */
+.hero { padding-top: 96px; color: #fff3d6; }
+.v-hero { position: absolute; inset: 0; }
+.v-hero img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.3) translateY(-6%); transition: transform 4s cubic-bezier(.2,.8,.2,1); filter: sepia(.25); }
+.open .v-hero img { transform: none; }
+.v-hero-shade { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(18,12,7,.35), rgba(18,12,7,.88) 75%); }
+.v-pillars i { position: absolute; z-index: 2; top: 0; bottom: 0; width: 24px; background: repeating-linear-gradient(#a07848 0 18px, #7a5634 18px 22px, #c9a27a 22px 40px); box-shadow: 0 0 30px rgba(0,0,0,.6); }
+.v-pillars i:first-child { left: 0; } .v-pillars i:last-child { right: 0; }
+.hero .invocation { font: 600 1.05rem var(--f-gu); color: #ffd98a; }
+.hero .kicker { color: #ffd98a; }
+.nm { text-shadow: 0 0 30px rgba(255,179,71,.5); }
+.amp { color: #ffb347; font-family: 'Spectral', serif; font-style: italic; font-size: 1.8rem; }
+.hero-date { padding: 8px 18px; border-top: 1px solid #ffb347; border-bottom: 1px solid #ffb347; font-family: 'Marcellus SC', serif; letter-spacing: .14em; color: #fff3d6; }
+.lang-gu .hero-date { letter-spacing: 0; }
+.scroll-cue { color: #ffd98a; }
+
+.invite-card { outline: 1px solid rgba(160,120,72,.4); outline-offset: -10px; }
+.invite-photo { border-radius: 50% 50% 0 0 / 22% 22% 0 0; border: 6px solid #c9a27a; }
+.pn { color: #3b2a1e; }
+.scratch-reveal { border-radius: 50% 50% 0 0 / 40% 40% 0 0; background: #f7ecda; border: 2px solid #a0662c; }
+.sr-date { color: #a0662c; font-size: 4rem; font-family: 'Cinzel', serif; }
+.cd { border-top: 3px solid #a0662c; }
+.v-diyas { display: flex; justify-content: center; align-items: flex-end; gap: 14px; margin-top: 28px; }
+.v-diyas i { position: relative; width: 22px; height: 9px; border-radius: 0 0 14px 14px; background: #8a5a2b; }
+.v-diyas i::before { content: ''; position: absolute; left: 7px; bottom: 7px; width: 8px; height: 13px; border-radius: 50% 50% 40% 40%; background: radial-gradient(circle at 50% 70%, #fff3b0, #ffb347 55%, transparent 72%); filter: drop-shadow(0 0 6px #ffb347); animation: v-flick 1s ease-in-out calc(var(--i) * -.15s) infinite alternate; }
+.story-photo img { border-radius: 50% 50% 0 0 / 20% 20% 0 0; }
+.slides { border-radius: 0; border: 6px solid #c9a27a; }
+.ev-dot { background: #3b2a1e; color: #ffd98a; border-radius: 0; box-shadow: 0 0 0 4px #efe0c8, 0 0 0 5px #a0662c; }
+.ev.main .ev-card { background: #3b2a1e; color: #fff3d6; outline: 1px solid #ffb347; outline-offset: -8px; }
+.ev.main h3, .ev.main .ev-note, .ev.main .ev-when { color: #fff3d6; } .ev.main .btn.ghost { color: #ffd98a; border-color: #ffd98a; }
+.tile .ic { background: #3b2a1e; color: #ffd98a; border-radius: 0; }
+.foot { background: #120c07; color: #ffd98a; }

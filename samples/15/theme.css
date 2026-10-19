@@ -1,0 +1,70 @@
+/* Shreeji · pichwai teal, lotus pink, gold, cream · Italianno / Gilda Display / Karla / Farsan */
+:root {
+  --bg: #fff5e8; --ink: #0c2f2b; --muted: #4f6662; --accent: #e86a92; --accent2: #0f4c45; --line: rgba(15,76,69,.18);
+  --card: #fffaf2; --card-border: 2px solid #d4a53c; --card-radius: 16px; --card-shadow: 0 0 0 6px #fffaf2, 0 0 0 7px rgba(232,106,146,.4), 0 24px 40px -26px rgba(12,47,43,.5);
+  --btn: #0f4c45; --btn-ink: #fff5e8; --btn-radius: 999px; --title-color: #0f4c45; --title-size: clamp(2.8rem, 13vw, 3.6rem); --title-weight: 400;
+  --name-color: #fff5e8; --name-size: clamp(3.6rem, 18vw, 4.8rem); --name-weight: 400; --on: #e86a92; --on-ink: #fff;
+  --chrome-bg: #0f4c45; --chrome-ink: #d4a53c; --chrome-border: 1px solid #d4a53c;
+  --f-names: 'Italianno', cursive; --f-title: 'Italianno', cursive; --f-caps: 'Gilda Display', serif; --f-body: 'Karla', sans-serif; --f-gu: 'Hind Vadodara', sans-serif; --f-gu-names: 'Farsan', cursive; --f-gu-title: 'Farsan', cursive;
+}
+body { background: #fff5e8 radial-gradient(circle at 50% 0, rgba(232,106,146,.12), transparent 50%); }
+@media (min-width: 700px) { body::before { content: ''; position: fixed; inset: 0; background: url(assets/img/lotus-3.webp) center/cover; filter: blur(16px) brightness(.7); } }
+.sec { padding-top: 70px; }
+.kicker { color: #e86a92; letter-spacing: .28em; font-family: 'Gilda Display', serif; }
+.lang-gu .title, .lang-gu .nm { font-size: calc(var(--title-size) * .8); }
+.rv { transform: scale(.92); transition: opacity 1s ease var(--d,0s), transform 1.2s var(--ease) var(--d,0s); }
+
+/* gate */
+.gate { background: #0f4c45; overflow: hidden; }
+.s-grid { position: absolute; inset: -4%; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); place-items: center; }
+.s-grid span { width: 64px; opacity: 0; transform: scale(.2) rotate(-40deg); animation: s-bloom .9s cubic-bezier(.3,1.4,.5,1) calc(var(--i) * .05s) forwards; }
+.s-grid span:nth-child(even) svg { filter: hue-rotate(-20deg) brightness(1.1); }
+@keyframes s-bloom { to { opacity: .55; transform: none; } }
+.s-fan { position: absolute; left: 50%; bottom: -10%; width: 0; height: 0; }
+.s-fth { position: absolute; left: -18px; bottom: 0; width: 36px; height: 60vh; transform-origin: 50% 100%; transform: rotate(0deg) scaleY(.1); opacity: 0; transition: transform 1.4s cubic-bezier(.3,1.2,.5,1) calc(var(--i) * .03s), opacity .6s; }
+.s-fth i { position: absolute; left: 0; top: 0; width: 36px; height: 50px; border-radius: 50%; background: radial-gradient(ellipse at 50% 50%, #1b2a6b 0 22%, #2dc6c6 24% 44%, #d4a53c 46% 60%, #1d6b3a 62%); }
+.s-fth::before { content: ''; position: absolute; left: 17px; top: 40px; bottom: 0; width: 2px; background: linear-gradient(#2dc6c6, #1d6b3a); }
+.s-box { position: relative; z-index: 3; color: #fff5e8; margin: 0 26px; padding: 22px; border-radius: 20px; background: rgba(12,47,43,.82); border: 1px solid #d4a53c; backdrop-filter: blur(4px); opacity: 0; animation: v-in 1s ease 1.3s forwards; }
+@keyframes v-in { to { opacity: 1; } }
+.s-box .g-names { font-family: 'Italianno', cursive; font-size: 3.4rem; color: #f4a6bf; }
+.lang-gu .s-box .g-names { font-family: 'Farsan', cursive; font-size: 2.4rem; }
+.s-box .g-inv { color: #d4a53c; } .s-box .g-tap { color: #d4a53c; }
+.s-seal svg { width: 100px; height: 100px; }
+.s-open .s-fth { transform: rotate(var(--a)) scaleY(1); opacity: 1; }
+.s-open .s-box { animation: none; opacity: 0; transform: scale(.9); transition: all .6s ease .2s; }
+.s-open .s-grid span { animation: none; opacity: 0; transition: opacity 1s 1s; }
+
+/* hero */
+.hero { padding-top: 84px; color: #fff5e8; }
+.s-hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, #1a6b62, #0f4c45 55%, #0a332e); }
+.s-hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle, rgba(212,165,60,.35) 1.5px, transparent 2px) 0 0/22px 22px; }
+.s-frame { position: relative; z-index: 2; order: 2; width: min(240px, 64vw); aspect-ratio: 4/5; margin: 28px auto 0; padding: 8px; border-radius: 50% 50% 14px 14px / 34% 34% 14px 14px; background: conic-gradient(from 0deg, #d4a53c, #e86a92, #d4a53c, #2dc6c6, #d4a53c); transform: translateY(40px); opacity: 0; transition: all 1.4s var(--ease) .4s; }
+.open .s-frame { transform: none; opacity: 1; }
+.s-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.s-hero-row { position: relative; z-index: 2; order: 3; display: flex; justify-content: center; gap: 4px; margin-top: -24px; }
+.s-hero-row span { width: 46px; transform: translateY(30px); opacity: 0; transition: all .8s cubic-bezier(.3,1.4,.5,1) calc(1s + var(--i) * .1s); }
+.open .s-hero-row span { transform: none; opacity: 1; }
+.hero-copy { order: 1; }
+.hero .invocation { font: 600 1.1rem var(--f-gu); color: #d4a53c; }
+.hero .kicker { color: #f4a6bf; }
+.amp { color: #d4a53c; font-size: 2.4rem; }
+.hero-date { padding: 8px 18px; border-radius: 999px; border: 1px solid #d4a53c; color: #fff5e8; font-family: 'Gilda Display', serif; }
+.scroll-cue { color: #d4a53c; }
+
+.invite-photo { border-radius: 50% 50% 12px 12px / 30% 30% 12px 12px; }
+.pn { color: #0f4c45; }
+.scratch::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; background: conic-gradient(#d4a53c, #e86a92, #d4a53c, #2dc6c6, #d4a53c); z-index: -1; }
+.scratch-reveal { border-radius: 50%; background: #fffaf2; border: 0; }
+.sr-date { color: #e86a92; font-size: 4.2rem; font-family: 'Gilda Display', serif; }
+.cd { border-radius: 50% 50% 14px 14px / 30% 30% 14px 14px; }
+.s-row { display: flex; justify-content: center; gap: 6px; margin-top: 26px; }
+.s-row span { width: 44px; animation: h-bob 3s ease-in-out calc(var(--i) * -.6s) infinite; }
+@keyframes h-bob { 50% { transform: translateY(-6px); } }
+.story-photo img { border-radius: 50% 50% 14px 14px / 28% 28% 14px 14px; border: 4px solid #d4a53c; }
+.slides { border-radius: 18px; border: 3px solid #d4a53c; }
+.ev-dot { background: #e86a92; color: #fff; box-shadow: 0 0 0 4px #fff5e8, 0 0 0 5px #d4a53c; }
+.ev.main .ev-card { background: #0f4c45; color: #fff5e8; outline: 0; }
+.ev.main h3, .ev.main .ev-note, .ev.main .ev-when { color: #fff5e8; } .ev.main .btn.ghost { color: #d4a53c; border-color: #d4a53c; }
+.tile .ic { background: #fde3ec; color: #0f4c45; }
+.wish:nth-child(odd) { background: #fde3ec; }
+.foot { background: #0a332e; color: #d4a53c; }
