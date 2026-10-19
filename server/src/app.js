@@ -317,16 +317,19 @@ export function createApp(db) {
       q.createPayment.run(inv.id, req.user.id, planId, amount * 100, 'dev', orderId);
       res.json({ mode, orderId, amount: amount * 100 });
     } catch (e) {
-      console.error(e);
-      res.status(502).json({ error: 'Could not start the payment. Please try again.' });
+      console.error(e.auth ? 'Razorpay rejected the API keys — check RAZORPAY_KEY_ID / RAZORPAY_KEY_SECRET in server/.env' : e);
+      // the customer is logged in fine; a key problem is ours, so it is a 500 (a 401 here would read as "please log in")
+      res.status(e.status === 400 ? 400 : 500).json({ error: e.auth ? 'Online payments are temporarily unavailable. Please WhatsApp us and we will help you pay.' : 'Could not start the payment. Please try again.' });
     }
   });
 
   app.post('/api/invitations/:id/checkout/verify', requireUser, (req, res) => {
     const inv = ownInvite(req, res); if (!inv) return;
     const { orderId, paymentId, signature } = req.body || {};
+    if (!orderId) return res.status(400).json({ error: 'Payment details are missing.' });
     const pay = q.paymentByOrder.get(String(orderId || ''));
     if (!pay || pay.invitation_id !== inv.id) return res.status(400).json({ error: 'Payment not found.' });
+    if (pay.provider === 'razorpay' && (!paymentId || !signature)) return res.status(400).json({ error: 'Payment details are missing.' });
     if (pay.provider === 'razorpay' && !verifyCheckoutSignature({ orderId, paymentId, signature })) return res.status(400).json({ error: 'Payment could not be verified. If money was deducted, it will be refunded automatically — or contact us.' });
     if (pay.provider === 'dev' && paymentMode() !== 'dev') return res.status(400).json({ error: 'Test payments are disabled.' });
     markPaid(pay.order_id, pay.provider === 'dev' ? 'dev_' + randomToken(10) : paymentId);

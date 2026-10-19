@@ -27,6 +27,7 @@ export function planIssues(plan, template, data, templates) {
 export function PublishDialog({ open, onClose, inv, data, onPaid, beforePay }) {
   const { site, user, setUser } = useSession();
   const ref = useRef(null);
+  const paying = useRef(false); // our <dialog> sits in the top layer, above Razorpay's iframe — hide it while Razorpay is open
   const [phone, setPhone] = useState('');
   const [choice, setChoice] = useState('premium');
   const [state, setState] = useState({ busy: false, error: '', dev: null, done: null });
@@ -42,6 +43,7 @@ export function PublishDialog({ open, onClose, inv, data, onPaid, beforePay }) {
   const plans = Object.values(site.plans);
   const priceOf = (id) => (inv.plan === 'basic' ? (id === 'premium' ? site.plans.premium.price - site.plans.basic.price : 0) : site.plans[id].price);
 
+  function back() { if (!paying.current) return; paying.current = false; if (!ref.current?.open) ref.current?.showModal(); }
   async function verify(body) {
     const r = await api(`/api/invitations/${inv.id}/checkout/verify`, { method: 'POST', body });
     setState((s) => ({ ...s, busy: false, done: r.invitation, dev: null }));
@@ -57,18 +59,20 @@ export function PublishDialog({ open, onClose, inv, data, onPaid, beforePay }) {
       await loadRazorpay();
       const rz = new window.Razorpay({
         key: o.keyId, order_id: o.orderId, amount: o.amount, currency: 'INR', name: o.name,
-        description: `${site.plans[choice].name} plan — ${inv.title}`, prefill: { name: user.name, email: user.email },
+        description: `${site.plans[choice].name} plan — ${inv.title}`, prefill: { name: user.name, email: user.email, contact: phone },
         theme: { color: '#e4572e' },
-        handler: (r) => verify({ orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature }).catch((e) => setState({ busy: false, error: e.message })),
-        modal: { ondismiss: () => setState((s) => ({ ...s, busy: false })) },
+        handler: (r) => { back(); verify({ orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature }).catch((e) => setState({ busy: false, error: e.message })); },
+        modal: { ondismiss: () => { back(); setState((s) => ({ ...s, busy: false })); } },
       });
-      rz.on('payment.failed', (r) => setState({ busy: false, error: r.error?.description || 'Payment failed. No money was taken.' }));
+      // Razorpay shows the failure itself and lets the guest retry; our dialog shows it once they close Razorpay
+      rz.on('payment.failed', (r) => setState((s) => ({ ...s, error: r.error?.description || 'Payment failed. No money was taken.' })));
+      paying.current = true; ref.current?.close();
       rz.open();
     } catch (e) { setState({ busy: false, error: e.message }); }
   }
 
   return (
-    <dialog ref={ref} className="publish" onClose={onClose}>
+    <dialog ref={ref} className="publish" onClose={() => { if (!paying.current) onClose(); }}>
       <button className="pm-close" aria-label="Close" onClick={() => ref.current.close()}>×</button>
       {state.done ? (
         <div className="published">
