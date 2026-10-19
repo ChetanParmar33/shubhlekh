@@ -33,7 +33,7 @@
 # account area is client-side routed
 [[redirects]]
   from = "/dashboard/*"
-  to = "/dashboard/index.html"
+  to = "/dashboard.html"
   status = 200
 
 [[headers]]

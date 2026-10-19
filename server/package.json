@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@electric-sql/pglite": "0.5.10",
-    "@neondatabase/serverless": "1.2.0",
     "@netlify/blobs": "11.1.4",
+    "@netlify/database": "2.0.1",
     "express": "5.3.0",
     "serverless-http": "4.0.0"
   }

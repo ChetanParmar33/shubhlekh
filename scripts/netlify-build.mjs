@@ -20,9 +20,8 @@ for (const id of fs.readdirSync(path.join(ROOT, 'samples'))) {
 fs.writeFileSync(path.join(ROOT, 'samples', 'assets.json'), JSON.stringify(list));
 
 for (const [route, meta] of Object.entries(PAGE_META)) {
-  const dir = route === '/' ? OUT : path.join(OUT, route);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), renderSpa(route, meta));
+  // /pricing → pricing.html: Netlify serves it at /pricing directly (a folder index would 301 to /pricing/)
+  fs.writeFileSync(route === '/' ? path.join(OUT, 'index.html') : path.join(OUT, `${route.slice(1)}.html`), renderSpa(route, meta));
 }
 fs.writeFileSync(path.join(OUT, '404.html'), renderSpa('/404', null)); // Netlify serves it with a real 404; the SPA shows "not found"
 console.log('public/ ready:', Object.keys(PAGE_META).length, 'pages,', list.length, 'design photos listed');

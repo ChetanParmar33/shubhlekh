@@ -5,7 +5,8 @@ import { config } from './config.js';
 
 const onNetlify = () => !!process.env.NETLIFY_BLOBS_CONTEXT || process.env.NETLIFY === 'true';
 let store;
-const blobs = async () => (store ??= (await import('@netlify/blobs')).getStore({ name: 'uploads', consistency: 'strong' }));
+// default (eventual) consistency: names are unique and written once; strong isn't available to Lambda-style functions
+const blobs = async () => (store ??= (await import('@netlify/blobs')).getStore('uploads'));
 const dir = () => { const d = path.join(config.dataDir, 'uploads'); fs.mkdirSync(d, { recursive: true }); return d; };
 
 export const uploads = {

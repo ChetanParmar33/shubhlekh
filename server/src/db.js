@@ -1,4 +1,4 @@
-// Postgres everywhere: Netlify DB (Neon, over HTTP) in production, PGlite (Postgres in WASM) for local dev and tests,
+// Postgres everywhere: Netlify Database in production, PGlite (Postgres in WASM) for local dev and tests,
 // so there is one SQL dialect. Queries use `?` placeholders; they are turned into $1, $2… here.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -77,16 +77,20 @@ const SCHEMA = [
 
 // a variable, so bundlers (Netlify's esbuild) leave the local-only WASM database out of the function
 const PGLITE = '@electric-sql/pglite';
+async function netlifyPool() {
+  const { getDatabase, MissingDatabaseConnectionError } = await import('@netlify/database');
+  try { return getDatabase(config.databaseUrl ? { connectionString: config.databaseUrl } : {}).pool; }
+  catch (e) { if (e instanceof MissingDatabaseConnectionError) return null; throw e; }
+}
 const numbered = (sql) => { let i = 0; return sql.replace(/\?/g, () => `$${++i}`); };
 
-// `file`: ':memory:' for tests; default is DATABASE_URL (Neon) if set, else a PGlite folder in DATA_DIR.
+// `file`: ':memory:' for tests. Otherwise Netlify Database when its connection is available (on Netlify, or
+// DATABASE_URL set), else a PGlite folder in DATA_DIR.
 export async function openDb(file) {
-  const url = file ? '' : config.databaseUrl;
   let query;
-  if (url) {
-    const { neon } = await import('@neondatabase/serverless');
-    const sql = neon(url);
-    query = async (text, params) => { const r = await sql.query(text, params, { fullResults: true }); return { rows: r.rows, changes: r.rowCount ?? 0 }; };
+  const pool = file ? null : await netlifyPool();
+  if (pool) {
+    query = async (text, params) => { const r = await pool.query(text, params); return { rows: r.rows, changes: r.rowCount ?? 0 }; };
   } else {
     const { PGlite } = await import(PGLITE);
     const dir = file === ':memory:' ? undefined : file || path.join(config.dataDir, 'pg');
@@ -94,7 +98,8 @@ export async function openDb(file) {
     const pg = new PGlite(dir);
     query = async (text, params) => { const r = await pg.query(text, params); return { rows: r.rows, changes: r.affectedRows ?? 0 }; };
   }
-  for (const s of SCHEMA) await query(s, []);
+  // one round trip on a warm database; the full schema only runs on a fresh one
+  if (!(await query("SELECT to_regclass('public.contact_messages') AS t", [])).rows[0]?.t) for (const s of SCHEMA) await query(s, []);
   return {
     get: async (sql, ...p) => (await query(numbered(sql), p)).rows[0],
     all: async (sql, ...p) => (await query(numbered(sql), p)).rows,

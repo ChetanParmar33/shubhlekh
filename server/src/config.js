@@ -9,7 +9,8 @@ export const ROOT = [path.resolve(here, '..', '..'), process.cwd(), process.env.
   .find((d) => fs.existsSync(path.join(d, 'samples'))) || path.resolve(here, '..', '..');
 
 const env = process.env;
-const isProd = env.NODE_ENV === 'production';
+// Netlify functions run on Lambda (LAMBDA_TASK_ROOT is set there) — always production, without setting NODE_ENV for the build.
+const isProd = env.NODE_ENV === 'production' || !!env.LAMBDA_TASK_ROOT;
 if (isProd && (!env.SESSION_SECRET || env.SESSION_SECRET.length < 32)) {
   throw new Error('SESSION_SECRET (32+ characters) is required in production');
 }
@@ -27,8 +28,8 @@ export const config = {
   adminEmails: String(env.ADMIN_EMAILS || '').split(',').map((s) => s.trim().toLowerCase()).filter(Boolean),
   sessionSecret: env.SESSION_SECRET || 'dev-only-secret-change-me-dev-only-secret',
   dataDir: path.resolve(env.DATA_DIR || path.join(ROOT, 'server', 'data')),
-  // Postgres connection: Netlify DB sets NETLIFY_DATABASE_URL. Empty → local PGlite database in DATA_DIR.
-  databaseUrl: env.NETLIFY_DATABASE_URL || env.DATABASE_URL || '',
+  // Postgres connection override; on Netlify the @netlify/database package finds its own. Empty locally → PGlite in DATA_DIR.
+  databaseUrl: env.DATABASE_URL || '',
   razorpay: { keyId: env.RAZORPAY_KEY_ID || '', keySecret: env.RAZORPAY_KEY_SECRET || '' },
   // Lets you finish the publish flow locally without a payment gateway. Never enabled in production.
   devPayments: !isProd && env.DEV_PAYMENTS !== '0',
