@@ -1,0 +1,149 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- 1080x1920 promo stage. Everything is driven by render(t) (no CSS animations), so frames are exact. ?v=hi|en -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@500;600;700&family=Cormorant+SC:wght@500;600&family=Jost:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=Rasa:wght@500;600&family=Noto+Sans+Devanagari:wght@500;600&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #fbf3e2; }
+  * { box-sizing: border-box; }
+  #bg { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 38%, #fffaf0 0%, #f7ead0 55%, #e8cf9c 100%); }
+  #rays { position: absolute; left: 50%; top: 40%; width: 2600px; height: 2600px; margin: -1300px; background: repeating-conic-gradient(rgba(201,160,60,.10) 0 3deg, transparent 3deg 12deg); -webkit-mask: radial-gradient(circle, #000 0, transparent 60%); }
+  #mandala { position: absolute; left: 50%; top: 40%; width: 1500px; height: 1500px; margin: -750px; opacity: .16; }
+  .dust { position: absolute; border-radius: 50%; background: radial-gradient(circle, #fff6d0, #d9b25a 60%, transparent 72%); }
+  #vig { position: absolute; inset: 0; background: radial-gradient(130% 90% at 50% 45%, transparent 60%, rgba(120,84,20,.28)); }
+  .cap { position: absolute; left: 60px; right: 60px; top: 150px; text-align: center; color: #6b4f16; }
+  .kick { font: 600 30px 'Jost', sans-serif; letter-spacing: .42em; text-transform: uppercase; color: #a8822e; }
+  .hi .kick { font-family: 'Noto Sans Devanagari', sans-serif; letter-spacing: .08em; font-size: 36px; }
+  .ttl { margin-top: 18px; font: 600 90px/1.08 'Cormorant Upright', serif; color: #5c4210; }
+  .hi .ttl { font: 400 74px/1.25 'Tiro Devanagari Hindi', serif; }
+  .ttl .w { display: inline-block; white-space: pre; background: linear-gradient(135deg, #8a6a1e, #c9a03c 45%, #e8c76a 55%, #8a6a1e); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 2px; }
+  .gu { font-family: 'Rasa', serif !important; }
+  #phone { position: absolute; left: 168px; top: 520px; width: 744px; height: 1323px; border-radius: 86px; padding: 16px; background: linear-gradient(145deg, #f4dd9a, #b38a2a 40%, #f0d68a 60%, #8a6a1e); box-shadow: 0 60px 120px -40px rgba(90,60,10,.6), 0 0 0 3px rgba(255,250,235,.6) inset; }
+  #phone .scr { width: 100%; height: 100%; border-radius: 72px; overflow: hidden; background: #fffaf0; position: relative; }
+  #phone img { width: 100%; height: 100%; display: block; }
+  #phone .notch { position: absolute; left: 50%; top: 30px; width: 190px; height: 44px; margin-left: -95px; border-radius: 30px; background: #1d160c; z-index: 2; }
+  #glare { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.35) 45%, transparent 60%); mix-blend-mode: soft-light; pointer-events: none; }
+  .tap { position: absolute; width: 150px; height: 150px; margin: -75px; border-radius: 50%; border: 6px solid rgba(255,255,255,.95); box-shadow: 0 0 0 10px rgba(201,160,60,.35), 0 10px 30px rgba(0,0,0,.25); }
+  .tap::after { content: ''; position: absolute; inset: 35px; border-radius: 50%; background: rgba(255,255,255,.85); }
+  #intro, #outro { position: absolute; inset: 0; text-align: center; color: #5c4210; }
+  #lotus { position: absolute; left: 50%; top: 520px; width: 520px; height: 520px; margin-left: -260px; }
+  #brand { position: absolute; left: 0; right: 0; top: 1060px; }
+  #brand .kick { font-size: 32px; }
+  #brand .big { margin-top: 24px; font: 700 168px/1 'Cormorant Upright', serif; }
+  .hi #brand .big { font: 400 170px/1.2 'Tiro Devanagari Hindi', serif; }
+  #brand .big .w, #outro .w { display: inline-block; white-space: pre; background: linear-gradient(135deg, #8a6a1e, #c9a03c 45%, #e8c76a 55%, #8a6a1e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #brand .sub { margin-top: 26px; font: 500 46px 'Jost', sans-serif; color: #7a5c20; letter-spacing: .04em; }
+  .hi #brand .sub { font-family: 'Noto Sans Devanagari', sans-serif; }
+  #outro .o1 { position: absolute; left: 0; right: 0; top: 560px; font: 600 58px 'Jost', sans-serif; color: #a8822e; letter-spacing: .1em; }
+  .hi #outro .o1 { font-family: 'Noto Sans Devanagari', sans-serif; letter-spacing: 0; }
+  #outro .o2 { position: absolute; left: 0; right: 0; top: 650px; font: 700 250px/1 'Cormorant Upright', serif; }
+  #outro .o3 { position: absolute; left: 60px; right: 60px; top: 960px; font: 600 80px/1.25 'Cormorant Upright', serif; color: #5c4210; }
+  .hi #outro .o3 { font: 400 76px/1.4 'Tiro Devanagari Hindi', serif; }
+  #outro .pill { position: absolute; left: 50%; top: 1290px; transform: translateX(-50%); display: flex; align-items: center; gap: 22px; padding: 34px 64px; border-radius: 999px; background: #128c4a; color: #fff; font: 600 56px 'Jost', sans-serif; white-space: nowrap; box-shadow: 0 30px 60px -20px rgba(18,140,74,.7); }
+  .hi #outro .pill { font-family: 'Noto Sans Devanagari', sans-serif; }
+  #outro .pill svg { width: 70px; height: 70px; }
+  #outro .feat { position: absolute; left: 0; right: 0; top: 1500px; font: 500 38px 'Jost', sans-serif; color: #7a5c20; }
+  .hi #outro .feat { font-family: 'Noto Sans Devanagari', sans-serif; }
+  #outro .logo { position: absolute; left: 0; right: 0; top: 1660px; display: flex; justify-content: center; align-items: center; gap: 18px; font: 700 64px 'Cormorant Upright', serif; color: #5c4210; }
+  #outro .logo svg { width: 64px; height: 64px; }
+</style></head>
+<body>
+<div id="bg"></div><div id="rays"></div>
+<svg id="mandala" viewBox="-100 -100 200 200"><g fill="none" stroke="#b08a2e" stroke-width=".35" id="mg"></g></svg>
+<div id="dust"></div>
+<div id="cap" class="cap"><div class="kick"></div><div class="ttl"></div></div>
+<div id="phone"><div class="scr"><div class="notch"></div><img id="scr" alt=""><div id="glare"></div></div></div>
+<div id="tap" class="tap" style="opacity:0"></div>
+<div id="intro">
+  <svg id="lotus" viewBox="-100 -100 200 200"><g id="lo" fill="#fffaf0" stroke="#c9a03c" stroke-width="1.6"></g><g id="li" fill="#f7e7bd" stroke="#c9a03c" stroke-width="1.4"></g><circle id="lc" r="12" fill="#c9a03c"/></svg>
+  <div id="brand"><div class="kick" id="bk"></div><div class="big" id="bb"></div><div class="sub" id="bs"></div></div>
+</div>
+<div id="outro">
+  <div class="o1" id="o1"></div><div class="o2" id="o2"></div><div class="o3" id="o3"></div>
+  <div class="pill" id="pill"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm-3.4 5.2c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.5.7c-.1.2-.2.3 0 .6.5.9 1.3 1.7 2.2 2.2.3.2.4.1.6 0l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.4.4 0 .6-.2 1.4-.8 1.8-.6.4-1.5.6-2.4.3-2.6-.8-4.6-2.8-5.5-5.3-.3-.9-.1-2 .3-2.3Z"/></svg><span id="pt"></span></div>
+  <div class="feat" id="feat"></div>
+  <div class="logo" id="logo"><svg viewBox="0 0 64 64"><path d="M32 54C17 43 17 24 32 9c15 15 15 34 0 45Z" fill="#f2a541"/><path d="M32 54c-7-9-7-20 0-31 7 11 7 22 0 31Z" fill="#e4572e"/></svg>Shubhlekh</div>
+</div>
+<script>
+const V = new URLSearchParams(location.search).get('v') || 'en';
+document.body.classList.toggle('hi', V === 'hi');
+const TXT = {
+  en: { bk: 'Shubhlekh presents', bb: 'Shubh Vivah', bs: 'A digital wedding invitation',
+    caps: [[3.5, 8.9, 'The opening', 'Tap — and a lotus blooms'], [9.0, 12.2, 'Your day', 'Your names, in gold'], [12.3, 16.9, 'The date', 'Scratch to reveal the muhurat'],
+      [17.0, 21.1, 'Celebrations', 'Every ceremony · maps · RSVP'], [21.2, 24.4, 'One tap', 'English + <span class="gu">ગુજરાતી</span>']],
+    o1: 'Plans from', o2: '₹299', o3: 'Just choose a plan —<br>our team does the rest.', pt: 'WhatsApp us', feat: '12 designs  ·  Music  ·  RSVP  ·  English + <span class="gu">ગુજરાતી</span>' },
+  hi: { bk: 'Shubhlekh प्रस्तुत करता है', bb: 'शुभ विवाह', bs: 'डिजिटल शादी का निमंत्रण',
+    caps: [[3.5, 8.9, 'शुरुआत', 'एक टैप — और कमल खिल उठे'], [9.0, 12.2, 'आपका दिन', 'आपके नाम, सुनहरे अंदाज़ में'], [12.3, 16.9, 'शुभ तिथि', 'स्क्रैच करें, तारीख़ देखें'],
+      [17.0, 21.1, 'हर रस्म', 'मैप · कैलेंडर · RSVP'], [21.2, 24.4, 'एक टैप में', 'English + <span class="gu">ગુજરાતી</span>']],
+    o1: 'सिर्फ़', o2: '₹299', o3: 'बस प्लान लीजिए —<br>बाकी सब हम करेंगे।', pt: 'WhatsApp करें', feat: '12 डिज़ाइन  ·  संगीत  ·  RSVP  ·  English + <span class="gu">ગુજરાતી</span>' },
+}[V];
+
+const $ = (id) => document.getElementById(id);
+const cl = (x) => Math.max(0, Math.min(1, x)), ease = (x) => { x = cl(x); return x * x * (3 - 2 * x); };
+const outBack = (x) => { x = cl(x); const c = 1.5; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const win = (t, a, b, c, d) => Math.min(ease((t - a) / (b - a)), 1 - ease((t - c) / (d - c)));
+// split a title into word spans (keeps inline html like the ગુજરાતી span intact)
+const words = (el, html) => { if (el.dataset.h === html) return [...el.querySelectorAll('.w')]; el.dataset.h = html; el.innerHTML = html.replace(/<[^>]+>/g, (m) => m.replace(/ /g, '\u0001')).split(/(<br>| )/).map((w) => (w === ' ' ? ' ' : w === '<br>' ? '<br>' : `<span class="w">${w.replace(/\u0001/g, ' ')}</span>`)).join(''); return [...el.querySelectorAll('.w')]; };
+const stagger = (ws, t, t0, per = 0.09, dur = 0.55) => ws.forEach((w, i) => { const k = ease((t - t0 - i * per) / dur); w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px)`; w.style.filter = `blur(${(1 - k) * 8}px)`; });
+
+// mandala + lotus geometry
+const pet = (r1, r2, w) => `M0 ${-r1}C${w} ${-(r1 + r2) / 2} ${w * .5} ${-r2} 0 ${-r2}C${-w * .5} ${-r2} ${-w} ${-(r1 + r2) / 2} 0 ${-r1}Z`;
+$('mg').innerHTML = [24, 16, 12].map((n, k) => Array.from({ length: n }, (_, i) => `<path transform="rotate(${360 / n * i})" d="${pet(20 + k * 22, 60 + k * 18, 10 + k * 3)}"/>`).join('')).join('') + '<circle r="96"/><circle r="88" stroke-dasharray="1 3"/><circle r="18"/>';
+const LO = Array.from({ length: 8 }, (_, i) => `<path data-r="${i * 45}" d="M0 0C-20-26-18-66 0-90 18-66 20-26 0 0Z"/>`).join('');
+const LI = Array.from({ length: 8 }, (_, i) => `<path data-r="${22.5 + i * 45}" d="M0 0C-14-20-13-48 0-64 13-48 14-20 0 0Z"/>`).join('');
+$('lo').innerHTML = LO; $('li').innerHTML = LI;
+const DUST = Array.from({ length: 46 }, (_, i) => { const d = document.createElement('i'); d.className = 'dust'; $('dust').appendChild(d); const r = (n) => (Math.sin(i * 127.1 + n * 311.7) * 43758.5453) % 1; return { d, x: Math.abs(r(1)) * 1080, y: Math.abs(r(2)) * 1920, s: 6 + Math.abs(r(3)) * 16, v: 20 + Math.abs(r(4)) * 50, ph: Math.abs(r(5)) * 6.28 }; });
+
+window.render = async (t, frame) => {
+  $('rays').style.transform = `rotate(${t * 3}deg)`;
+  $('mandala').style.transform = `rotate(${-t * 4}deg) scale(${1 + .03 * Math.sin(t * .6)})`;
+  for (const p of DUST) { const y = ((p.y - t * p.v) % 1920 + 1920) % 1920; p.d.style.cssText = `left:${p.x + 18 * Math.sin(t * .7 + p.ph)}px;top:${y}px;width:${p.s}px;height:${p.s}px;opacity:${.35 + .45 * Math.abs(Math.sin(t * 1.3 + p.ph))}`; }
+
+  // intro: lotus opens, brand + design name appear, then everything lifts away as the phone rises
+  const iout = ease((t - 2.35) / 0.6);
+  $('intro').style.opacity = 1 - iout; $('intro').style.transform = `translateY(${-iout * 160}px) scale(${1 - iout * .08})`;
+  const bloom = ease((t - 0.2) / 1.6);
+  $('lo').querySelectorAll('path').forEach((e) => e.setAttribute('transform', `rotate(${+e.dataset.r * bloom}) scale(${.3 + .7 * bloom},${.9 + .1 * bloom}) translate(0 ${14 * (1 - bloom)})`));
+  $('li').querySelectorAll('path').forEach((e) => e.setAttribute('transform', `rotate(${+e.dataset.r * ease((t - .5) / 1.6)}) scale(${.3 + .7 * ease((t - .5) / 1.6)},1)`));
+  $('lc').setAttribute('r', 12 * ease((t - 1.2) / .6));
+  $('lotus').style.transform = `scale(${.8 + .2 * bloom}) rotate(${t * 4}deg)`; $('lotus').style.filter = `drop-shadow(0 20px 40px rgba(138,106,30,${.35 * bloom}))`;
+  $('bk').textContent = TXT.bk; $('bk').style.opacity = ease((t - .5) / .6);
+  stagger(words($('bb'), TXT.bb), t, .8, .14, .7);
+  $('bs').textContent = TXT.bs; $('bs').style.opacity = ease((t - 1.7) / .6); $('bs').style.transform = `translateY(${(1 - ease((t - 1.7) / .6)) * 20}px)`;
+
+  // phone: rises in at 2.9s, gentle float, leaves for the outro
+  const pin = outBack((t - 2.9) / 0.9), pout = ease((t - 24.4) / 0.8);
+  const fy = 8 * Math.sin(t * 1.1), tilt = 1.2 * Math.sin(t * .5);
+  $('phone').style.transform = `translateY(${(1 - pin) * 1500 + pout * 1500 + fy}px) rotate(${tilt * (1 - pout)}deg) scale(${1 - pout * .1})`;
+  $('phone').style.opacity = t < 2.85 ? 0 : 1;
+  $('glare').style.transform = `translateX(${-600 + ((t * 120) % 1800)}px)`;
+  if (frame && $('scr').dataset.f !== frame) { $('scr').dataset.f = frame; $('scr').src = frame; await $('scr').decode().catch(() => {}); }
+
+  // tap ripples: lotus bud (5.8 s) and the language button (21.3 s), in phone-screen coordinates
+  const S = 744 - 32, sx = 168 + 16, sy = 520 + 16 + fy;
+  let tp = null;
+  for (const [at, x, y] of [[5.8, .5, .36], [21.3, .105, .057]]) if (t > at - .5 && t < at + .7) tp = [at, x, y];
+  if (tp) { const k = (t - tp[0]); $('tap').style.cssText = `left:${sx + tp[1] * S}px;top:${sy + tp[2] * (1323 - 32)}px;opacity:${k < 0 ? ease((k + .5) / .3) : 1 - ease(k / .6)};transform:scale(${k < 0 ? 1 : 1 + k * 1.4 - (k < .12 ? .25 : 0)})`; }
+  else $('tap').style.opacity = 0;
+
+  // captions above the phone
+  const c = TXT.caps.find(([a, b]) => t >= a - .1 && t <= b + .4);
+  const cap = $('cap');
+  if (c) {
+    const [a, b, k, ttl] = c, o = 1 - ease((t - b) / .4);
+    cap.style.opacity = o; cap.querySelector('.kick').textContent = k; cap.querySelector('.kick').style.opacity = ease((t - a) / .4);
+    stagger(words(cap.querySelector('.ttl'), ttl), t, a + .15);
+  } else cap.style.opacity = 0;
+
+  // outro
+  const ot = t - 24.9;
+  $('outro').style.opacity = ot > -.2 ? 1 : 0;
+  $('o1').innerHTML = TXT.o1; $('o1').style.opacity = ease(ot / .5); $('o1').style.transform = `translateY(${(1 - ease(ot / .5)) * 30}px)`;
+  const pr = words($('o2'), TXT.o2); pr.forEach((w) => { const k = outBack((ot - .3) / .8); w.style.opacity = cl((ot - .3) / .3); w.style.transform = `scale(${.5 + .5 * k})`; });
+  stagger(words($('o3'), TXT.o3), t, 24.9 + 1.0, .08);
+  $('pt').textContent = TXT.pt; const pk = outBack((ot - 2.4) / .7);
+  $('pill').style.opacity = cl((ot - 2.4) / .3); $('pill').style.transform = `translateX(-50%) scale(${(.6 + .4 * pk) * (1 + .03 * Math.sin(Math.max(0, ot - 3.2) * 5))})`;
+  $('feat').innerHTML = TXT.feat; $('feat').style.opacity = ease((ot - 3.4) / .6);
+  $('logo').style.opacity = ease((ot - 4.0) / .6); $('logo').style.transform = `translateY(${(1 - ease((ot - 4.0) / .6)) * 24}px)`;
+};
+</script>
+</body></html>

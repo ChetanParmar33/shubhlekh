@@ -6,3 +6,12 @@ server/.env
 # photo-picking working files (re-created by tools/photos/search.py + sheet.py)
 tools/photos/th/
 tools/photos/*.png
+
+# python caches; promo-video working files (frames, intermediate audio)
+__pycache__/
+marketing/*/frames/
+marketing/*/out/
+marketing/*/vo/
+marketing/*/check/
+marketing/*/*.wav
+marketing/*/*.log
